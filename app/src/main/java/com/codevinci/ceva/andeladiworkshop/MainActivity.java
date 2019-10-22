@@ -8,8 +8,11 @@ import com.codevinci.ceva.andeladiworkshop.dagger.CarComponent;
 import com.codevinci.ceva.andeladiworkshop.dagger.DaggerCarComponent;
 import com.codevinci.ceva.andeladiworkshop.model.Car;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
-    private Car car;
+    @Inject //field injection - we cant make the member private
+    Car car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CarComponent carComponent = DaggerCarComponent.create();
+        carComponent.inject(this);
 
-        car = carComponent.getCar();
+        /*car = carComponent.getCar();*/
         car.drive();
     }
 }
