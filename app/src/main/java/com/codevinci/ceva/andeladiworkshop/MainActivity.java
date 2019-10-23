@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /*CarComponent carComponent = DaggerCarComponent.create();*///cant use create when we need to pass arguments
-        CarComponent carComponent = DaggerCarComponent.builder()
+        /*CarComponent carComponent = DaggerCarComponent.builder()
                 .dieselEngineModule(new DieselEngineModule(150))
+                .build();*/
+
+        CarComponent carComponent = DaggerCarComponent.builder()
+                .horsePower(150)
+                .engineCapacity(2700)
                 .build();
-
         carComponent.inject(this);
-
         /*car = carComponent.getCar();*/
         car.drive();
     }
