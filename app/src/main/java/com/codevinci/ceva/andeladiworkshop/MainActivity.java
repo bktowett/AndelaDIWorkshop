@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.codevinci.ceva.andeladiworkshop.dagger.CarComponent;
 import com.codevinci.ceva.andeladiworkshop.dagger.DaggerCarComponent;
+import com.codevinci.ceva.andeladiworkshop.dagger.DieselEngineModule;
 import com.codevinci.ceva.andeladiworkshop.model.Car;
 
 import javax.inject.Inject;
@@ -19,7 +20,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent carComponent = DaggerCarComponent.create();
+        /*CarComponent carComponent = DaggerCarComponent.create();*///cant use create when we need to pass arguments
+        CarComponent carComponent = DaggerCarComponent.builder()
+                .dieselEngineModule(new DieselEngineModule(150))
+                .build();
+
         carComponent.inject(this);
 
         /*car = carComponent.getCar();*/
