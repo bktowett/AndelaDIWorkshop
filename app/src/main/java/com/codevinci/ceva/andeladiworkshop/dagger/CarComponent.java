@@ -5,7 +5,7 @@ import com.codevinci.ceva.andeladiworkshop.model.Car;
 
 import dagger.Component;
 
-@Component
+@Component(modules = WheelsModule.class)
 public interface CarComponent {
     Car getCar();
 

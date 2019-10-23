@@ -6,7 +6,7 @@ public class BadCar {
 
     public BadCar(Engine engine, Wheels wheels){
         engine = new Engine();
-        wheels = new Wheels();
+        //wheels = new Wheels();
     }
 
 
