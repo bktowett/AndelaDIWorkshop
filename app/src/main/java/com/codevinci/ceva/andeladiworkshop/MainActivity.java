@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
     @Inject //field injection - we cant make the member private
-    Car car;
+    Car car1, car2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,24 @@ public class MainActivity extends AppCompatActivity {
                 .engineCapacity(2700)
                 .build();
         carComponent.inject(this);
-        /*car = carComponent.getCar();*/
-        car.drive();
+        //car = carComponent.getCar();
+        car1.drive();
+        car2.drive();
+
+        //uncomment these lines to see how the app would react when provided with different components
+        /*CarComponent carComponent1 = DaggerCarComponent.builder()
+                .horsePower(150)
+                .engineCapacity(2700)
+                .build();
+        carComponent1.inject(this);
+
+        CarComponent carComponent2 = DaggerCarComponent.builder()
+                .horsePower(150)
+                .engineCapacity(2700)
+                .build();
+        carComponent1.inject(this);
+
+        carComponent1.getCar().drive();
+        carComponent2.getCar().drive();*/
     }
 }
