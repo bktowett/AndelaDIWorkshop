@@ -18,7 +18,9 @@ public class Car {
     public void enableRemote(Remote remote){
         remote.setListener(this);
     }
+
     public void drive(){
+        engine.start();//shows us which engine is set
         Log.d(TAG, "driving...");
     }
 }

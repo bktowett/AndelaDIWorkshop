@@ -5,7 +5,7 @@ public class BadCar {
     private Wheels wheels;
 
     public BadCar(Engine engine, Wheels wheels){
-        engine = new Engine();
+        //engine = new Engine();
         //wheels = new Wheels();
     }
 
