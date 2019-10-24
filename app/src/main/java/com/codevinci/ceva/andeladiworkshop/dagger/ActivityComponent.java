@@ -2,18 +2,17 @@ package com.codevinci.ceva.andeladiworkshop.dagger;
 
 import com.codevinci.ceva.andeladiworkshop.MainActivity;
 import com.codevinci.ceva.andeladiworkshop.dagger.qualifiers.HorsePower;
+import com.codevinci.ceva.andeladiworkshop.dagger.scopes.PerActivityScope;
 import com.codevinci.ceva.andeladiworkshop.model.Car;
-import com.codevinci.ceva.andeladiworkshop.model.PetrolEngine;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 
-@Singleton
-@Component(modules = {WheelsModule.class, PetrolEngineModule.class})
-public interface CarComponent {
+@PerActivityScope
+@Component(dependencies = AppComponent.class, modules = {WheelsModule.class, PetrolEngineModule.class})
+public interface ActivityComponent {
     Car getCar();
 
     void inject(MainActivity mainActivity);
@@ -27,6 +26,8 @@ public interface CarComponent {
         @BindsInstance
         Builder engineCapacity(@Named("enginecapacity") int engineCapacity);
 
-        CarComponent build();
+        Builder appComponent(AppComponent component);
+
+        ActivityComponent build();
     }
 }

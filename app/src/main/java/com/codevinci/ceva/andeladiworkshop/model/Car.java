@@ -2,8 +2,11 @@ package com.codevinci.ceva.andeladiworkshop.model;
 
 import android.util.Log;
 
+import com.codevinci.ceva.andeladiworkshop.dagger.scopes.PerActivityScope;
+
 import javax.inject.Inject;
 
+@PerActivityScope
 public class Car {
     private static final String TAG = "Car";
     private Driver driver;

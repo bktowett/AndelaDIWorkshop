@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.codevinci.ceva.andeladiworkshop.dagger.CarComponent;
-import com.codevinci.ceva.andeladiworkshop.dagger.DaggerCarComponent;
-import com.codevinci.ceva.andeladiworkshop.dagger.DieselEngineModule;
+import com.codevinci.ceva.andeladiworkshop.dagger.ActivityComponent;
+import com.codevinci.ceva.andeladiworkshop.dagger.DaggerActivityComponent;
 import com.codevinci.ceva.andeladiworkshop.model.Car;
 
 import javax.inject.Inject;
@@ -20,28 +19,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*CarComponent carComponent = DaggerCarComponent.create();*///cant use create when we need to pass arguments
-        /*CarComponent carComponent = DaggerCarComponent.builder()
+        /*ActivityComponent activityComponent = DaggerActivityComponent.create();*///cant use create when we need to pass arguments
+        /*ActivityComponent activityComponent = DaggerActivityComponent.builder()
                 .dieselEngineModule(new DieselEngineModule(150))
                 .build();*/
 
-        CarComponent carComponent = DaggerCarComponent.builder()
-                .horsePower(150)
-                .engineCapacity(2700)
-                .build();
-        carComponent.inject(this);
-        //car = carComponent.getCar();
-        car1.drive();
-        car2.drive();
-
         //uncomment these lines to see how the app would react when provided with different components
-        /*CarComponent carComponent1 = DaggerCarComponent.builder()
+        /*ActivityComponent carComponent1 = DaggerActivityComponent.builder()
                 .horsePower(150)
                 .engineCapacity(2700)
                 .build();
         carComponent1.inject(this);
 
-        CarComponent carComponent2 = DaggerCarComponent.builder()
+        ActivityComponent carComponent2 = DaggerActivityComponent.builder()
                 .horsePower(150)
                 .engineCapacity(2700)
                 .build();
@@ -49,5 +39,17 @@ public class MainActivity extends AppCompatActivity {
 
         carComponent1.getCar().drive();
         carComponent2.getCar().drive();*/
+
+        /*ActivityComponent activityComponent = ((ExampleApp)getApplication()).getAppComponent();
+        activityComponent.inject(this);*/
+        ActivityComponent component = DaggerActivityComponent.builder()
+                .engineCapacity(150)
+                .horsePower(4000)
+                .appComponent(((ExampleApp)getApplication()).getAppComponent())
+                .build();
+        component.inject(this);
+        //car = activityComponent.getCar();
+        car1.drive();
+        car2.drive();
     }
 }
